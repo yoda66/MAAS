@@ -4,9 +4,9 @@
 
 In todays modern defense stack environment, penetration testers are faced with significant obstacles for initial access operations. There are many technologies deployed in environments design to thwart attempts at executing various binary artifacts on an endpoint and prevent initial access from succeeding.
 
-Having said this, the best approach to tackling a good defense is to come prepared with a better offense!  This project describes a DevOps approach I have named "Malware As A Service" which leverages the CI/CD capabilities of the community gitlab software to build a malware artifact generation pipeline.
+Having said this, the best approach to tackling a good defense is to come prepared with a better offense!  This project describes a DevOps approach I have named "**Malware As A Service**" which leverages the CI/CD capabilities of the community gitlab software to build a malware artifact generation pipeline.
 
-Here at Black Hills Information Security, after presenting this concept at Wild West Hackin' Fest, I believe that the work presented here makes me the unofficial "father of malware as a service", and that other penetration testing companies can benefit from this work.
+Here at Black Hills Information Security, after presenting this concept at Wild West Hackin' Fest, I believe that the work presented here makes me the unofficial "**father of malware as a service**", and that other penetration testing companies can benefit from this work.
 
 ## The Challenge
 
@@ -24,7 +24,7 @@ The MAAS approach allows us to address the significant challenges we face today 
     * Process tree analysis
     * Windows DLL API hooking
     * Kernel driver block listing
-
+    * Artifical intelligence approachs to dynamically profile malware behavior.
 * There are a number of developers who provide malware frameworks out there but there is a tendency to use default switches, and not customize to fit a target customer profile.
 
 
