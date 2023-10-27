@@ -62,7 +62,15 @@ It is important to note the following:
  * Virtual Box
  * Docker
 
-In our **MAAS** architecture, we choose the shell environment for runner execution. On a Linux operating system, this is **/bin/bash** whereas in a Windows environment, this is **PowerShell**. 
+In our **MAAS** architecture, we choose the shell environment for runner execution. On a Linux operating system, this is **/bin/bash** whereas in a Windows environment, this is **PowerShell**. Depending on the skillset of the person maintaining the CI/CD yaml files, and also since **PowerShell** is now open source, it is possible to choose a unified shell across platforms, that being **pwsh** (PowerShell).
+
+During development, we decided that using a combination of **SMB/CIFS** shared storage provided by **Network Attached Storage (NAS)** as well as using docker volumes, and *docker stack* provided a nice balance of just big enough without having to move to a full **Kubernetes** and *docker swarm* approach.
+
+Depending on the desired scale and diversity of malware artifact generation, others may choose to avoid the complexity of docker and just stay with a basic shared storage approach across runners.
+
+## MAAS Architecture Diagram
+
+![Alt text](image.png)
 
 ## Roadmap
 If you have ideas for releases in the future, it is a good idea to list them in the README.
