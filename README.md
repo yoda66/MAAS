@@ -8,7 +8,6 @@ Having said this, the best approach to tackling a good defense is to come prepar
 
 Here at Black Hills Information Security, after presenting this concept at Wild West Hackin' Fest, I believe that the work presented here makes me the unofficial "**father of malware as a service**", and that other penetration testing companies can benefit from this work.
 
-- Joff Thyer
 
 ## The Challenge
 
@@ -29,7 +28,21 @@ The MAAS approach allows us to address the significant challenges we face today 
     * Artifical intelligence approachs to dynamically profile malware behavior.
 * There are a number of developers who provide malware frameworks out there but there is a tendency to use default switches, and not customize to fit a target customer profile.
 
+## Steps to create your own Malware As A Service (MAAS) Offering
 
+The CI/CD approach allows us to define a pipeline of operations which in a software development context is normally focused on some form of unit tests in support of security scanning, quality assurance, and robust regession testing.
+
+With **MAAS**, we will take a different approach whereby each of the pipeline stages are dedicated to the production of malware artifacts. The input data needed for the generation of malware artifacts can be in the form of various configurable switches, some shellcode if needed, and other items such as callback URLs for example. 
+
+In our development, and since the GitLab CI/CD approach is YAML centric, we decided to use static YAML files for malware configuration, initial CI/CD operations, and then further Python scripts which drive dynamic child stages of the pipeline by also producing YAML artifacts.
+
+As the methodology developed, the following stages of processing were defined:
+1. Initial Preparations
+2. Malware Compilation / Production
+3. Data Consolidation and Child Pipeline YAML Generation
+4. Dynamic Child Pipeline Execution
+5. Malware Artifact Post Processing
+6. Cleanup and Statistical Data Collection
 
 
 
