@@ -1,4 +1,4 @@
-# MAAS
+# Malware As A Service (MAAS)
 
 ## Getting started
 
