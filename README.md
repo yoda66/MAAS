@@ -44,6 +44,12 @@ As the methodology developed, the following stages of processing were defined:
 5. Malware Artifact Post Processing
 6. Cleanup and Statistical Data Collection
 
+It is important to note the following:
+* A global **config.yml** file is used throughout these pipeline stages which will determine the behavior of the pipeline as it executes.
+* At any stage of CI/CD pipeline execution, there can and will exist parallel jobs assuming that no co-dependency exists between jobs.
+* Multiple gitlab runners can be used to service the CI/CD jobs assuming that shared storage is deployed such that post processing jobs have a view of all generated artifacts.
+* Any single gitlab runner can be deployed native to the operating system itself, or even within a Docker container.
+* To achieve your goals, it is likely that you will require different deployed O/S platforms as gitlab runners servicing the CI/CD jobs.
 
 
 ## Roadmap
