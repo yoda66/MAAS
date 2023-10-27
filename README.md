@@ -8,6 +8,8 @@ Having said this, the best approach to tackling a good defense is to come prepar
 
 Here at Black Hills Information Security, after presenting this concept at Wild West Hackin' Fest, I believe that the work presented here makes me the unofficial "**father of malware as a service**", and that other penetration testing companies can benefit from this work.
 
+- Joff Thyer
+
 ## The Challenge
 
 As penetration testers, we must produce unique, highly evasive and successful artifacts for initial access operations of Red Team and assumed compromise style engagements. In short, we are tasked with emulating real world threat actors and must use sophisticated malware techniques to be successful.
