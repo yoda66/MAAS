@@ -51,6 +51,18 @@ It is important to note the following:
 * Any single gitlab runner can be deployed native to the operating system itself, or even within a Docker container.
 * To achieve your goals, it is likely that you will require different deployed O/S platforms as gitlab runners servicing the CI/CD jobs.
 
+## What is a GitLab Runner?
+
+ A gitlab runner is a software agent installed on a different server from the GitLab server. The GitLab Runner receives instructions from the GitLab server in regards to which jobs to run. Each deployed runner must be registered with the GitLab server.
+
+ A gitlab runner will use a **runner executor** which is essentially the environment within which a gitlab job is executed.  There are a number of different executors you can choose including but not limited to:
+ * Shell
+ * PowerShell
+ * Docker
+ * Virtual Box
+ * Docker
+
+In our **MAAS** architecture, we choose the shell environment for runner execution. On a Linux operating system, this is **/bin/bash** whereas in a Windows environment, this is **PowerShell**. 
 
 ## Roadmap
 If you have ideas for releases in the future, it is a good idea to list them in the README.
