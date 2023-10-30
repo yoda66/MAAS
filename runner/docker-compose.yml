@@ -7,7 +7,7 @@ services:
   dotc:
     build:
       context: .
-    image: maas-${HOSTNAME}:latest
+    image: maas:latest
     restart: always
     volumes:
         - payloads:/payloads

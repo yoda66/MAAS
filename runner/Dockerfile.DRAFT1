@@ -4,5 +4,14 @@ RUN apt-get install -y apt-utils
 RUN apt-get install -y curl
 RUN curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh" -o runner-script.sh
 RUN chmod 755 ./runner-script.sh && ./runner-script.sh
+RUN rm -f runner-script.sh
 RUN apt-get install -y gitlab-runner
-CMD /bin/bash
+RUN useradd runner
+RUN mkdir /runner
+RUN chown -R runner:runner /runner
+RUN gitlab-runner uninstall
+RUN gitlab-runner install -user runner
+WORKDIR /runner
+COPY config_toml /runner/config_toml
+#CMD gitlab-runner run --working-directory /runner --config /runner/config_toml/$TASK_SLOT.toml --user runner
+CMD bash
