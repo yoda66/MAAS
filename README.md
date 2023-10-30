@@ -73,16 +73,23 @@ Depending on the desired scale and diversity of malware artifact generation, oth
 ![Alt text](image.png)
 
 ## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+
+* November 2023: Initial Draft Repo and Docs
+
 
 ## Contributing
 
+Any and all ideas are welcome. 
 
 ## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+
+Joff Thyer (c) 2023
+Black Hills Information Security LLC
 
 ## License
+
 This project is licensed with the MIT License.
 
 ## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+
+The project is under active development and maintenance as of November 2023.
