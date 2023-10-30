@@ -60,7 +60,8 @@ docker run -it maas
 3. Within the bash shell of the runner, create a non-privileged username called **runner** and then use the following command:
 
 
-```root@4d4005ecaacc:/# gitlab-runner register
+```
+root@4d4005ecaacc:/# gitlab-runner register
 ```
 
     Runtime platform arch=amd64 os=linux pid=14 revision=853330f9 version=16.5.0
