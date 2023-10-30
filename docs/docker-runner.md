@@ -39,6 +39,8 @@ The goal of installing and registering the first runner is to collect a sample
 **config.toml** file which can then be used for all other runners you wish to
 configure in your pipeline.
 
+Important: You must have an installed gitlab community server with it's own TLS certificate which is up and running before proceeding with these steps.
+
 The steps are as follows:
 
 1. Build your docker container.  The sample Dockerfile is contained within the *runners* directory of this repo.
@@ -54,4 +56,26 @@ docker build -t maas .
 ```
 docker run -it maas
 ```
+
+3. Within the bash shell of the runner, create a non-privileged username called **runner** and then use the following command:
+
+
+    root@4d4005ecaacc:/# gitlab-runner register
+
+    Runtime platform arch=amd64 os=linux pid=14 revision=853330f9 version=16.5.0
+    Running in system-mode.
+    Created missing unique system ID                    system_id=r_3t1CVObvTsta
+
+    Enter the GitLab instance URL (for example, https://gitlab.com/):
+    **https://git.server.tld**
+
+    Enter the registration token:
+    **glrt-mDvjxxxxxxxxxxxxx**
+
+    Verifying runner... is valid   runner=mDvjen4tZ
+    Enter a name for the runner. This is stored only in the local config.toml file:                            [4d4005ecaacc]:
+    Enter an executor: docker+machine, instance, custom, docker, docker-windows, parallels, virtualbox, docker-autoscaler, kubernetes, shell, ssh: **shell**
+    Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded!
+    Configuration (with the authentication token) was saved in "/etc/gitlab-runner/config.toml"                    
+
 
