@@ -57,7 +57,11 @@ docker build -t maas .
 docker run -it maas
 ```
 
-3. Within the bash shell of the runner, create a non-privileged username called **runner** and then use the following command:
+3. Register a new runner in your new GitLab repo project by selecting Settings->CICD->Runners, and clicking on "**New Project Runner**". You should see a screen that looks like this.
+
+![Alt text](image-1.png)
+
+4. Within the bash shell of the runner, create a non-privileged username called **runner** and then use the following command:
 
 
 ```
@@ -81,6 +85,29 @@ root@4d4005ecaacc:/# gitlab-runner register
     
     Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded!
     Configuration (with the authentication token) was saved in "/etc/gitlab-runner/config.toml"                    
+
+```
+
+4. Capture a copy of the **config.toml** file just by using copy and paste. We are going to use this file as a template for all runners we register in our pipeline.
+
+```
+concurrent = 1
+check_interval = 0
+shutdown_timeout = 0
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = "4d4005exxxxxx"
+  url = "https://git.server.tld"
+  id = 291
+  token = "glrt-mDvjen4tZBz3JzkMrrCB"
+  token_obtained_at = 2023-10-30T16:39:09Z
+  token_expires_at = 0001-01-01T00:00:00Z
+  executor = "shell"
+  [runners.cache]
+    MaxUploadedArchiveSize = 0
 
 ```
 
