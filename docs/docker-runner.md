@@ -35,5 +35,23 @@ CMD /bin/bash
 
 ### Installing and registering the first GitLab runner
 
+The goal of installing and registering the first runner is to collect a sample
+**config.toml** file which can then be used for all other runners you wish to
+configure in your pipeline.
 
+The steps are as follows:
+
+1. Build your docker container.  The sample Dockerfile is contained within the *runners* directory of this repo.
+
+```
+cd runner
+docker build -t maas .
+```
+*lots of output omitted*
+
+2. Execute your docker container in iteractive mode as follows:
+
+```
+docker run -it maas
+```
 
