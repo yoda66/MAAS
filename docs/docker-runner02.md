@@ -23,4 +23,6 @@ The goal is to generate four unique configuration files to be used with four dif
 
 ![](image-3.png)
 
+When you have completed this task, each **toml** configuration file will have a unique Gitlab token, unique name, and the same Gitlab server URL contained within it. Below is an example of what my **1.toml** file looks like.
+
 
