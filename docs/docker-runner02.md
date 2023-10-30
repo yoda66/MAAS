@@ -15,3 +15,12 @@ The goal is to generate four unique configuration files to be used with four dif
     * copy the GitLab Token and save it to a file.
 3. Repeat the above steps four times, saving the new token to your file each time.
 
+### Editing the TOML configuration files
+
+1. In your **config_toml** directory, create four different files by copying the **template.toml** file to **1.toml**, **2.toml**, **3.toml**, and **4.toml**.
+2. Use your favorite text editor to remove the **Id** field, and ensure that both the **name** and the **token** fields are blank.
+3. Edit each of the four files in turn, placing a unique Gitlab token into each file, and naming them **runner01**, **runner02**, and so forth in that **name** field. Check and ensure that the **URL** field contains the correct fully qualified domain name of your GitLab server.
+
+![](image-3.png)
+
+
