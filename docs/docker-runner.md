@@ -68,16 +68,19 @@ root@4d4005ecaacc:/# gitlab-runner register
     Created missing unique system ID                    system_id=r_3t1CVObvTsta
 
     Enter the GitLab instance URL (for example, https://gitlab.com/):
-    **https://git.server.tld**
+    https://git.server.tld
 
     Enter the registration token:
-    **glrt-mDvjxxxxxxxxxxxxx**
+    glrt-mDvjxxxxxxxxxxxxx
 
     Verifying runner... is valid   runner=mDvjen4tZ
-    Enter a name for the runner. This is stored only in the local config.toml file:                            [4d4005ecaacc]:
-    Enter an executor: docker+machine, instance, custom, docker, docker-windows, parallels, virtualbox, docker-autoscaler, kubernetes, shell, ssh: **shell**
+    Enter a name for the runner. This is stored only in the local config.toml file:  [4d4005ecaacc]:
+    
+    Enter an executor: docker+machine, instance, custom, docker, docker-windows, parallels, virtualbox, docker-autoscaler, kubernetes, shell, ssh: 
+    shell
+    
     Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded!
     Configuration (with the authentication token) was saved in "/etc/gitlab-runner/config.toml"                    
-    
+
 ```
 
