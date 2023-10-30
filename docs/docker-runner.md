@@ -59,7 +59,7 @@ docker run -it maas
 
 3. Register a new runner in your new GitLab repo project by selecting Settings->CICD->Runners, and clicking on "**New Project Runner**". You should see a screen that looks like this.
 
-![Alt text](image-1.png)
+![Alt text](image-2.png)
 
 4. Within the bash shell of the runner, create a non-privileged username called **runner** and then use the following command:
 
