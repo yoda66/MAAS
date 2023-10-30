@@ -1,0 +1,16 @@
+concurrent = 1
+check_interval = 0
+shutdown_timeout = 0
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = "runner01"
+  url = "https://git.nopsled.me"
+  token = ""
+  token_obtained_at = 2023-10-30T16:39:09Z
+  token_expires_at = 0001-01-01T00:00:00Z
+  executor = "shell"
+  [runners.cache]
+    MaxUploadedArchiveSize = 0
