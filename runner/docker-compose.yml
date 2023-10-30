@@ -1,0 +1,19 @@
+version: "3"
+
+volumes:
+  payloads:
+
+services:
+  dotc:
+    build:
+      context: .
+    image: maas-${HOSTNAME}:latest
+    restart: always
+    volumes:
+        - payloads:/payloads
+    environment:
+        NODE_HOSTNAME: "{{.Node.Hostname}}"
+        TASK_SLOT: "{{.Task.Slot}}"
+    deploy:
+        mode: replicated
+        replicas: 4
