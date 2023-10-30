@@ -62,7 +62,6 @@ docker run -it maas
 
 ```
 root@4d4005ecaacc:/# gitlab-runner register
-```
 
     Runtime platform arch=amd64 os=linux pid=14 revision=853330f9 version=16.5.0
     Running in system-mode.
@@ -79,5 +78,6 @@ root@4d4005ecaacc:/# gitlab-runner register
     Enter an executor: docker+machine, instance, custom, docker, docker-windows, parallels, virtualbox, docker-autoscaler, kubernetes, shell, ssh: **shell**
     Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded!
     Configuration (with the authentication token) was saved in "/etc/gitlab-runner/config.toml"                    
-
+    
+```
 
