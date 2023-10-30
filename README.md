@@ -70,7 +70,7 @@ Depending on the desired scale and diversity of malware artifact generation, oth
 
 ## MAAS Architecture Diagram
 
-![Alt text](image.png)
+![Alt text](docs/image.png)
 
 ## Roadmap
 
