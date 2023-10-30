@@ -17,6 +17,11 @@ The steps to initially begin the runner configuration are as follows:
 2. Execute the container and manually register the runner with the intent of taking a copy of the "**.toml**" configuration file.
 3. Extract the "**.toml**" configuration file and save to a file named "**1.toml**" outside of the Docker container.
 
+I like to build my docker containers using Ubuntu. Listed below is a minimal docker file which
+grabs a runner script from gitlab.com, executes it and then follows up with a package
+installation of the gitlab-runner. Note: the *runner-script.sh* file is designed to add the appropriate
+app package sources so that the subsequent *apt-get install* will work correctly. 
+
 ```
 FROM ubuntu:latest
 RUN apt-get -qqy update
@@ -27,3 +32,8 @@ RUN chmod 755 ./runner-script.sh && ./runner-script.sh
 RUN apt-get install -y gitlab-runner
 CMD /bin/bash
 ```
+
+### Installing and registering the first GitLab runner
+
+
+
