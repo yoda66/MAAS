@@ -1,4 +1,5 @@
 FROM ubuntu:latest
+ENV GOBIN=/runner/.lib
 RUN apt-get -qqy update
 RUN apt-get install -y apt-utils
 RUN apt-get install -y curl
@@ -9,7 +10,7 @@ RUN apt-get install -y gitlab-runner
 RUN apt-get install -y wget
 #
 RUN useradd runner -d /runner
-RUN mkdir /runner
+RUN mkdir -p /runner/.lib
 RUN gitlab-runner uninstall
 RUN gitlab-runner install -user runner
 #
@@ -21,4 +22,5 @@ COPY config_toml /etc/config_toml
 COPY bin /usr/local/bin
 RUN ln -s /usr/local/go/bin/go /usr/local/bin/go
 RUN chown -R runner:runner /runner
+RUN go install mvdan.cc/garble@latest
 CMD gitlab-runner run --working-directory /runner --config /etc/config_toml/$TASK_SLOT.toml --user runner
