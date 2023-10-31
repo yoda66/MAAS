@@ -1,4 +1,5 @@
 stages:
+    - PreProcess
     - BakeMalware
     - PostProcess
 
@@ -6,6 +7,17 @@ workflow:
     rules:
         - changes:
             - shellcode/*
+
+PreProcess:
+    stage: PreProcess
+    tags:
+        - maas
+    script:
+        - |
+            cd /payloads
+            mkdir .lib
+            export GOBIN=/payloads/.lib
+            go install mvdan.cc/garble@latest
 
 ScareCrow:
     stage: BakeMalware
@@ -15,7 +27,6 @@ ScareCrow:
         - |
             cd /payloads
             ScareCrow -I $CI_PROJECT_DIR/shellcode/notepad_x64.bin -Loader binary -nosign
-            ls -al /runner
             ls -al /payloads
 
 ZipFiles:
