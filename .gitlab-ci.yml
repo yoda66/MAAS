@@ -1,0 +1,23 @@
+stages:
+    - BakeMalware
+    - PostProcess
+
+workflow:
+    rules:
+        - changes: shellcode/*
+
+ScareCrow:
+    stage: BakeMalware
+    tags:
+        - maas
+    script:
+        - |
+            echo "Baking Malware"
+
+ZipFiles:
+    stage: PostProcess
+    tags:
+        - maas
+    script:
+        - |
+            echo "Creating ZIP file"
