@@ -25,7 +25,7 @@ ScareCrow:
         - |
             cd /payloads/${CI_COMMIT_SHORT_SHA}
             ScareCrow -I $CI_PROJECT_DIR/shellcode/notepad_x64.bin -Loader binary -nosign
-            ls -al /payloads
+            ls -alR /payloads
 
 PostProcess:
     stage: PostProcess
