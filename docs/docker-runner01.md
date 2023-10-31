@@ -19,8 +19,10 @@ The steps to initially begin the runner configuration are as follows:
 
 I like to build my docker containers using Ubuntu. Listed below is a minimal docker file which
 grabs a runner script from gitlab.com, executes it and then follows up with a package
-installation of the gitlab-runner. Note: the *runner-script.sh* file is designed to add the appropriate
+installation of the gitlab-runner. The *runner-script.sh* file is designed to add the appropriate
 app package sources so that the subsequent *apt-get install* will work correctly. 
+
+The file contents below are saved as the filename "**Dockerfile.template**" in this repo.
 
 ```
 FROM ubuntu:latest
