@@ -13,5 +13,5 @@ RUN gitlab-runner uninstall
 RUN gitlab-runner install -user runner
 WORKDIR /runner
 COPY config_toml /runner/config_toml
-#CMD gitlab-runner run --working-directory /runner --config /runner/config_toml/$TASK_SLOT.toml --user runner
-CMD bash
+CMD gitlab-runner run --working-directory /runner --config /runner/config_toml/$TASK_SLOT.toml --user runner
+#CMD bash

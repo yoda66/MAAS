@@ -4,7 +4,7 @@ volumes:
   payloads:
 
 services:
-  dotc:
+  maas:
     build:
       context: .
     image: maas:latest
