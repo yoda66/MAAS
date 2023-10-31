@@ -68,9 +68,11 @@ During development, we decided that using a combination of **SMB/CIFS** shared s
 
 Depending on the desired scale and diversity of malware artifact generation, others may choose to avoid the complexity of docker and just stay with a basic shared storage approach across runners.
 
-## Configuration Steps in Detail
+## Detailed Configuration Recipe/Steps
 
-* [docs/docker-runner01.md](Stuff1)
+* [Creating a Gitlab Runner in a Docker Container](docs/docker-runner01.md)
+* [Configuring Four Unique Gitlab Runners](docs/docker-runner02.md)
+* [Creating a Docker Stack for Deployment](docs/docker-runner03.md)
 
 
 ## MAAS Architecture Diagram
