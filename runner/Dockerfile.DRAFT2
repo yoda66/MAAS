@@ -8,17 +8,17 @@ RUN rm -f runner-script.sh
 RUN apt-get install -y gitlab-runner
 RUN apt-get install -y wget
 #
-RUN useradd runner
+RUN useradd runner -d /runner
 RUN mkdir /runner
-RUN chown -R runner:runner /runner
 RUN gitlab-runner uninstall
 RUN gitlab-runner install -user runner
+#
 WORKDIR /runner
 RUN wget https://go.dev/dl/go1.21.3.linux-amd64.tar.gz
-RUN tar -xzf go1.21.3.linux-amd64.tar.gz
+RUN tar -C /usr/local -xzf go1.21.3.linux-amd64.tar.gz
 RUN rm -f go1.21.3.linux-amd64.tar.gz
-COPY config_toml /runner/config_toml
-COPY bin /runner/bin
-RUN ln -s /runner/go/bin/go /usr/local/bin/go
-RUN ln -s /runner/bin/ScareCrow /usr/local/bin/ScareCrow
-CMD gitlab-runner run --working-directory /runner --config /runner/config_toml/$TASK_SLOT.toml --user runner
+COPY config_toml /etc/config_toml
+COPY bin /usr/local/bin
+RUN ln -s /usr/local/go/bin/go /usr/local/bin/go
+RUN chown -R runner:runner /runner
+CMD gitlab-runner run --working-directory /runner --config /etc/config_toml/$TASK_SLOT.toml --user runner
