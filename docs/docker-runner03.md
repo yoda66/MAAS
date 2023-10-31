@@ -1,5 +1,3 @@
-# Malware As A Service (MAAS)
-
 ## Creating a Docker Stack for Deployment
 
 At this point in time, you should have the correct runner names and tokens saved in files **1.toml**, **2.toml**, **3.toml**, and **4.toml**.  These four files will be used by the gitlab runner inside of the docker container when we stack up the entire configuration using a **docker stack**.
