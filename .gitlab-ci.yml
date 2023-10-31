@@ -15,11 +15,7 @@ PreProcess:
     script:
         - |
             mkdir /payloads/${CI_COMMIT_SHORT_SHA}
-            ln -s /payloads/.lib/garble /payloads/${CI_COMMIT_SHORT_SHA}/.lib
-            [ -f "/payloads/.lib/garble" ] && exit
-            mkdir -p /payloads/.lib
-            export GOBIN=/payloads/.lib
-            go install mvdan.cc/garble@latest
+            ln /usr/local/bin/garble /payloads/${CI_COMMIT_SHORT_SHA}/.lib
 
 ScareCrow:
     stage: BakeMalware
