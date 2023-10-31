@@ -13,6 +13,8 @@ ScareCrow:
         - maas
     script:
         - |
+            pwd
+            env
             ScareCrow -I $CI_PROJECT_DIR/shellcode/notepad_x64.bin -Loader binary -nosign
             ls -l /runner
             ls -l /payloads
