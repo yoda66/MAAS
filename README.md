@@ -70,9 +70,9 @@ Depending on the desired scale and diversity of malware artifact generation, oth
 
 ## Detailed Configuration Recipe/Steps
 
-* [Creating a Gitlab Runner in a Docker Container](docs/docker-runner01.md)
-* [Configuring Four Unique Gitlab Runners](docs/docker-runner02.md)
-* [Creating a Docker Stack for Deployment](docs/docker-runner03.md)
+1. [Creating a Gitlab Runner in a Docker Container](docs/docker-runner01.md)
+2. [Configuring Four Unique Gitlab Runners](docs/docker-runner02.md)
+3. [Creating a Docker Stack for Deployment](docs/docker-runner03.md)
 
 
 ## MAAS Architecture Diagram
