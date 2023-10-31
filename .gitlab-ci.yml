@@ -15,7 +15,7 @@ PreProcess:
     script:
         - |
             mkdir /payloads/${CI_COMMIT_SHORT_SHA}
-            ln /usr/local/bin/garble /payloads/${CI_COMMIT_SHORT_SHA}/.lib
+            ln -s /usr/local/bin/garble /payloads/${CI_COMMIT_SHORT_SHA}/.lib
 
 ScareCrow:
     stage: BakeMalware
