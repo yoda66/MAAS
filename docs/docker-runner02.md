@@ -1,5 +1,3 @@
-# Malware As A Service (MAAS)
-
 ## Configuring Four Unique Gitlab Runners
 
 Now we are going to use the **template.toml** file to create four different files in our **config_toml** directory.  Each of these configuration files will have identical configuration except the gitlab token used, and the **name** field.  In addition we will remove the **id** field in each configuration file.
