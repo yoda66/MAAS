@@ -14,6 +14,7 @@ PreProcess:
         - maas
     script:
         - |
+            [ -f "/payloads/.lib/garble" ] && exit
             mkdir -p /payloads/.lib
             export GOBIN=/payloads/.lib
             go install mvdan.cc/garble@latest
@@ -26,9 +27,8 @@ ScareCrow:
         - |
             cd /payloads
             ScareCrow -I $CI_PROJECT_DIR/shellcode/notepad_x64.bin -Loader binary -nosign
-            ls -al /payloads
 
-ZipFiles:
+PostProcess:
     stage: PostProcess
     tags:
         - maas
