@@ -14,7 +14,7 @@ PreProcess:
         - maas
     script:
         - |
-            mkdir -p /payloads/${CI_COMMIT_SHORT_SHA}
+            mkdir -p /payloads/${CI_COMMIT_SHORT_SHA}/.lib
             ln -s /usr/local/bin/garble /payloads/${CI_COMMIT_SHORT_SHA}/.lib/garble
 
 ScareCrow:
@@ -35,6 +35,7 @@ PostProcess:
     script:
         - |
             DEST=${CI_PROJECT_DIR}/ScareCrowPayloads
+            rm -rf /payloads/${CI_COMMIT_SHORT_SHA}/.lib
             cd /payloads
             7z a "${DEST}/${CI_COMMIT_SHORT_SHA}.7z" "${CI_COMMIT_SHORT_SHA}/*" -p"infected"
     artifacts:
