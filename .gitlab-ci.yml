@@ -13,12 +13,10 @@ ScareCrow:
         - maas
     script:
         - |
-            pwd
-            env
+            cd /payloads
             ScareCrow -I $CI_PROJECT_DIR/shellcode/notepad_x64.bin -Loader binary -nosign
-            ls -l /runner
-            ls -l /payloads
-            ls -l $CI_PROJECT_DIR
+            ls -al /runner
+            ls -al /payloads
 
 ZipFiles:
     stage: PostProcess
