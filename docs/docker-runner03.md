@@ -41,7 +41,12 @@ CMD gitlab-runner run --working-directory /runner --config /runner/config_toml $
 
 ### Step 2: Rebuild the **maas** docker container
 
-Execute the appropriate Docker build command to perform this action as follows:
+When building a container from a file named anything other than **Dockfile**, you will need to specify some additional syntax to the **docker build** command. After using your favorite search engine, you might be tempted to execute a command like this: "**docker build -t maas - <Dockerfile.DRAFT1**".  
+
+**DONT DO THIS** or you will become eternally frustrated that the build will break.
+
+Use the syntax specified below to build the docker container.  The **-f** flag to specify the correct Dockerfile is critically important.  
+
 ```
 $ docker build -t maas -f Dockerfile.DRAFT1 .
 

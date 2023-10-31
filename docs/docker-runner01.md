@@ -47,7 +47,7 @@ The steps are as follows:
 
 ```
 cd runner
-docker build -t maas .
+docker build -t maas -f Dockerfile.template .
 ```
 *lots of output omitted*
 
