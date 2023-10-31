@@ -96,7 +96,6 @@ services:
     volumes:
         - payloads:/payloads
     environment:
-        NODE_HOSTNAME: "{{.Node.Hostname}}"
         TASK_SLOT: "{{.Task.Slot}}"
     deploy:
         mode: replicated
