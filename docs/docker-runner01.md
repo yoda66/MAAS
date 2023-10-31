@@ -1,6 +1,6 @@
 # Malware As A Service (MAAS)
 
-## Creating a Docker container as a GITLAB Runner
+## How to create a Gitlab Runner in a Docker Container
 
 I found it very effective to execute GitLab runner inside a Docker container.
 Having said this, one of the challenges to solve is that GitLab requires a unique token
