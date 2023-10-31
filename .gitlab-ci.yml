@@ -4,7 +4,8 @@ stages:
 
 workflow:
     rules:
-        - changes: shellcode/*
+        - changes:
+            - shellcode/*
 
 ScareCrow:
     stage: BakeMalware
