@@ -45,8 +45,35 @@ CMD gitlab-runner run --working-directory /runner --config /runner/config_toml $
 
 Execute the appropriate Docker build command to perform this action as follows:
 ```
-docker build -t maas -f Dockerfile.DRAFT1 .
+$ docker build -t maas -f Dockerfile.DRAFT1 .
 
+[+] Building 0.1s (20/20) FINISHED
+ => [internal] load .dockerignore
+ => => transferring context: 2B
+ => [internal] load build definition from Dockerfile.DRAFT1
+ => => transferring dockerfile: 698B
+ => [internal] load metadata for docker.io/library/ubuntu:latest
+ => [internal] load build context
+ => => transferring context: 230B
+ => [ 1/15] FROM docker.io/library/ubuntu:latest
+ => CACHED [ 2/15] RUN apt-get -qqy update
+ => CACHED [ 3/15] RUN apt-get install -y apt-utils
+ => CACHED [ 4/15] RUN apt-get install -y curl
+ => CACHED [ 5/15] RUN curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-r
+ => CACHED [ 6/15] RUN chmod 755 ./runner-script.sh && ./runner-script.sh
+ => CACHED [ 7/15] RUN rm -f runner-script.sh
+ => CACHED [ 8/15] RUN apt-get install -y gitlab-runner
+ => CACHED [ 9/15] RUN useradd runner
+ => CACHED [10/15] RUN mkdir /runner
+ => CACHED [11/15] RUN chown -R runner:runner /runner
+ => CACHED [12/15] RUN gitlab-runner uninstall
+ => CACHED [13/15] RUN gitlab-runner install -user runner
+ => CACHED [14/15] WORKDIR /runner
+ => CACHED [15/15] COPY config_toml /runner/config_toml
+ => exporting to image
+ => => exporting layers
+ => => writing image sha256:ce205d683d10544ac9be2ad085a022f755bce4733ac0ee5b4cdd65871d213ebe
+ => => naming to docker.io/library/maas
 
 ```
 
