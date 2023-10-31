@@ -17,7 +17,8 @@ WORKDIR /runner
 RUN wget https://go.dev/dl/go1.21.3.linux-amd64.tar.gz
 RUN tar -xzf go1.21.3.linux-amd64.tar.gz
 RUN rm -f go1.21.3.linux-amd64.tar.gz
-RUN ln -s /runner/go/bin/go /usr/local/bin/go
 COPY config_toml /runner/config_toml
 COPY bin /runner/bin
+RUN ln -s /runner/go/bin/go /usr/local/bin/go
+RUN ln -s /runner/bin/ScareCrow /usr/local/bin/ScareCrow
 CMD gitlab-runner run --working-directory /runner --config /runner/config_toml/$TASK_SLOT.toml --user runner

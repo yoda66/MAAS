@@ -13,8 +13,7 @@ ScareCrow:
         - maas
     script:
         - |
-            echo "Baking Malware"
-
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/notepad_x64.bin -Loader binary -nosign
 ZipFiles:
     stage: PostProcess
     tags:
