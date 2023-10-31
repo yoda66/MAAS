@@ -130,3 +130,12 @@ $ docker volume ls
 DRIVER    VOLUME NAME
 local     maas_payloads
 ```
+
+You should verify on your GitLab community server that all the configured **maas** runners have a GREEN light showing to indicate the containers have indeed checked in with the server.
+
+![Alt text](image-4.png)
+
+
+**Congratulations!** You now have a running docker stack with four independant containers to service a CI/CD pipeline from your Gitlab repo.  Be aware that your docker stack is a simply Ubuntu distribution with no specific tools installed and no specific CI/CD pipeline steps configured to execute either.  The next document will further enhance the container with the installation of a malware generation tool and the configuration of the pipeline itself.
+
+
