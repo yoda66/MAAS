@@ -68,6 +68,11 @@ During development, we decided that using a combination of **SMB/CIFS** shared s
 
 Depending on the desired scale and diversity of malware artifact generation, others may choose to avoid the complexity of docker and just stay with a basic shared storage approach across runners.
 
+## Configuration Steps in Detail
+
+* [docs/docker-runner01.md](Stuff1)
+
+
 ## MAAS Architecture Diagram
 
 ![Alt text](docs/image.png)
@@ -93,3 +98,6 @@ This project is licensed with the MIT License.
 ## Project status
 
 The project is under active development and maintenance as of November 2023.
+
+
+[def]: Stuff1
