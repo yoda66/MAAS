@@ -7,9 +7,13 @@ RUN chmod 755 ./runner-script.sh && ./runner-script.sh
 RUN rm -f runner-script.sh
 RUN apt-get install -y gitlab-runner
 RUN apt-get install -y wget
+RUN apt-get install -y osslsigncode
+RUN apt-get install -y p7zip-full
+RUN apt-get install -y gcc-mingw-w64-x86-64-win32
 
 ## add runner username
 ## reinstall gitlab-runner
+RUN userdel gitlab-runner
 RUN useradd runner -d /runner
 RUN mkdir /runner
 RUN mkdir /payloads
