@@ -14,6 +14,8 @@ PreProcess:
         - maas
     script:
         - |
+            mkdir /payloads/${CI_COMMIT_SHORT_SHA}
+            ln -s /payloads/.lib/garble /payloads/${CI_COMMIT_SHORT_SHA}/.lib
             [ -f "/payloads/.lib/garble" ] && exit
             mkdir -p /payloads/.lib
             export GOBIN=/payloads/.lib
@@ -25,8 +27,9 @@ ScareCrow:
         - maas
     script:
         - |
-            cd /payloads
+            cd /payloads/${CI_COMMIT_SHORT_SHA}
             ScareCrow -I $CI_PROJECT_DIR/shellcode/notepad_x64.bin -Loader binary -nosign
+            ls -al /payloads
 
 PostProcess:
     stage: PostProcess

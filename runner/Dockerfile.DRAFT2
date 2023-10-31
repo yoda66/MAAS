@@ -7,14 +7,16 @@ RUN chmod 755 ./runner-script.sh && ./runner-script.sh
 RUN rm -f runner-script.sh
 RUN apt-get install -y gitlab-runner
 RUN apt-get install -y wget
-#
+
+## add runner username
+## reinstall gitlab-runner
 RUN useradd runner -d /runner
 RUN mkdir /runner
 RUN mkdir /payloads
 RUN gitlab-runner uninstall
 RUN gitlab-runner install -user runner
-#
-# Install golang and copy files
+
+## Install golang and copy files
 WORKDIR /runner
 RUN wget https://go.dev/dl/go1.21.3.linux-amd64.tar.gz
 RUN tar -C /usr/local -xzf go1.21.3.linux-amd64.tar.gz
