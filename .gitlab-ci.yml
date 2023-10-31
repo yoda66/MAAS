@@ -34,8 +34,8 @@ PostProcess:
     script:
         - |
             DEST=${CI_PROJECT_DIR}/ScareCrowPayloads
-            cd /payloads/${CI_COMMIT_SHORT_SHA}
-            7z a "${DEST}/${CI_COMMIT_SHORT_SHA}.7z" * -p"infected"
+            cd /payloads
+            7z a "${DEST}/${CI_COMMIT_SHORT_SHA}.7z" "${CI_COMMIT_SHORT_SHA}/*" -p"infected"
     artifacts:
         name: ScareCrowPayloads
         paths:
