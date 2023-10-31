@@ -6,12 +6,18 @@ RUN curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runn
 RUN chmod 755 ./runner-script.sh && ./runner-script.sh
 RUN rm -f runner-script.sh
 RUN apt-get install -y gitlab-runner
+RUN apt-get install -y wget
+#
 RUN useradd runner
 RUN mkdir /runner
 RUN chown -R runner:runner /runner
 RUN gitlab-runner uninstall
 RUN gitlab-runner install -user runner
 WORKDIR /runner
+RUN wget https://go.dev/dl/go1.21.3.linux-amd64.tar.gz
+RUN tar -xzf go1.21.3.linux-amd64.tar.gz
+RUN rm -f go1.21.3.linux-amd64.tar.gz
+RUN ln -s /runner/go/bin/go /usr/local/bin/go
 COPY config_toml /runner/config_toml
 COPY bin /runner/bin
 CMD gitlab-runner run --working-directory /runner --config /runner/config_toml/$TASK_SLOT.toml --user runner
