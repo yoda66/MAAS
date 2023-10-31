@@ -46,8 +46,33 @@ CMD gitlab-runner run --working-directory /runner --config /runner/config_toml $
 Execute the appropriate Docker build command to perform this action as follows:
 ```
 docker build -t maas -f Dockerfile.DRAFT1 .
+
+
 ```
 
 ### Step 3: Create/review the **docker-compose.yml** file.
 
+Fortunately for you, I have done the legwork required to build a docker compose file which will run your 4 different containers as a docker service with a common docker volume.  Listed below is the **docker-compose.yml** file we will be using.
+
+```
+version: "3"
+
+volumes:
+  payloads:
+
+services:
+  maas:
+    build:
+      context: .
+    image: maas:latest
+    restart: always
+    volumes:
+        - payloads:/payloads
+    environment:
+        NODE_HOSTNAME: "{{.Node.Hostname}}"
+        TASK_SLOT: "{{.Task.Slot}}"
+    deploy:
+        mode: replicated
+        replicas: 4
+```
 
