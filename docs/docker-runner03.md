@@ -79,7 +79,7 @@ $ docker build -t maas -f Dockerfile.DRAFT1 .
 
 ### Step 3: Create/review the **docker-compose.yml** file.
 
-Fortunately for you, I have done the legwork required to build a docker compose file which will run your 4 different containers as a docker service with a common docker volume.  Listed below is the **docker-compose.yml** file we will be using.
+Fortunately for you, I have done the legwork required to build a docker compose file which will run your 4 different containers as a docker service with a common docker volume.  Listed below is the **docker-compose.yml** file we will be using. Notably we will be relying on that **$TASK_SLOT** environment variable that the docker stack deployment command will set for us.
 
 ```
 version: "3"
@@ -102,3 +102,33 @@ services:
         replicas: 4
 ```
 
+### Step 4: Deploy the Docker stack.
+
+Now we will use the **docker stack** command to read the docker compose file and deploy a docker service stack of our four containers. Make sure you are in the **runner** directory of this repo, and execute the following command.
+
+```
+$ docker stack deploy -c docker-compose.yml maas
+
+Ignoring unsupported options: build, restart
+Creating network maas_default
+Creating service maas_maas
+```
+
+Assuming that everything checks out, you can now use the **docker ps** command to check the container status.
+
+```
+$ docker ps
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS          PORTS     NAMES
+26e79e7feaad   maas:latest   "/bin/sh -c 'gitlab-…"   24 seconds ago   Up 22 seconds             maas_maas.3.vejolf8miitxr4ettv9d0c51c
+88419ba33a35   maas:latest   "/bin/sh -c 'gitlab-…"   24 seconds ago   Up 22 seconds             maas_maas.4.txhozi2dqxilh0fe49x28lpn2
+7c37dd4ab8e8   maas:latest   "/bin/sh -c 'gitlab-…"   24 seconds ago   Up 22 seconds             maas_maas.2.p1gvuco8816a6rcfyh00xzcpz
+548ea98dc949   maas:latest   "/bin/sh -c 'gitlab-…"   24 seconds ago   Up 22 seconds             maas_maas.1.uwo3zh4oah19o1e715sjxunn6
+```
+
+You can also list the common docker volume that has been configured as follows:
+
+```
+$ docker volume ls
+DRIVER    VOLUME NAME
+local     maas_payloads
+```
