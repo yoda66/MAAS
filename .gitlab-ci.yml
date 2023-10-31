@@ -15,8 +15,9 @@ ScareCrow:
         - |
             ScareCrow -I $CI_PROJECT_DIR/shellcode/notepad_x64.bin -Loader binary -nosign
             ls -l /runner
+            ls -l /payloads
             ls -l $CI_PROJECT_DIR
-            
+
 ZipFiles:
     stage: PostProcess
     tags:
