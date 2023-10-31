@@ -140,7 +140,16 @@ You should verify on your GitLab community server that all the configured **maas
 
 ![Alt text](image-4.png)
 
+If at any point in time you wish to take the docker stack down / kill the containers, you can use the **docker stack rm** command as follows:
 
-**Congratulations!** You now have a running docker stack with four independant containers to service a CI/CD pipeline from your Gitlab repo.  Be aware that your docker stack is a simply Ubuntu distribution with no specific tools installed and no specific CI/CD pipeline steps configured to execute either.  The next document will further enhance the container with the installation of a malware generation tool and the configuration of the pipeline itself.
+```
+$ docker stack rm maas
+Removing service maas_maas                                                                             Removing network maas_default      
+```
+
+
+## Congratulations!
+
+You now have a running docker stack with four independant containers to service a CI/CD pipeline from your Gitlab repo.  Be aware that your docker stack is a simply Ubuntu distribution with no specific tools installed and no specific CI/CD pipeline steps configured to execute either.  The next document will further enhance the container with the installation of a malware generation tool and the configuration of the pipeline itself.
 
 
