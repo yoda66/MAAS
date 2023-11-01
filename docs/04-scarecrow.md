@@ -66,6 +66,46 @@ CMD gitlab-runner run --working-directory /runner --config /etc/config_toml/$TAS
 
 ```
 
+### Rebuild the Container and Test ScareCrow
+
+After we build the container, we are going to execute it in interactive mode, and mount the shared *payloads* volume.  Within the container the **/runner** directory is where the GitLab server will checkout our repo for CI/CD pipeline purposes, and the **/payloads** shared volume is where we will write our built payloads from **ScareCrow**.
+
+Assuming success, we should see the output below as we test.
+
+```
+$ docker build -t maas -f Dockerfile.DRAFT2 .
+<... output omitted ...>
+
+$ docker run -v maas_payloads:/payloads -it maas /bin/bash
+
+root@32cde439576b:/runner# cd /payloads/
+root@32cde439576b:/payloads# echo "stuff" >shellcode
+root@32cde439576b:/payloads# ScareCrow -I shellcode -Loader binary -nosign
+
+  _________                           _________
+ /   _____/ ____ _____ _______   ____ \_   ___ \_______  ______  _  __
+ \_____  \_/ ___\\__  \\_  __ \_/ __ \/    \  \/\_  __ \/  _ \ \/ \/ /
+ /        \  \___ / __ \|  | \/\  ___/\     \____|  | \(  <_> )     /
+/_______  /\___  >____  /__|    \___  >\______  /|__|   \____/ \/\_/
+        \/     \/     \/            \/        \/
+                                                        (@Tyl0us)
+        “Fear, you must understand is more than a mere obstacle.
+        Fear is a TEACHER. the first one you ever had.”
+
+[*] Encrypting Shellcode Using ELZMA Encryption
+[+] Shellcode Encrypted
+[+] Patched ETW Enabled
+[+] Patched AMSI Enabled
+[+] Sleep Timer set for 2416 milliseconds
+[*] Creating an Embedded Resource File
+[+] Created Embedded Resource File With OneDrive's Properties
+[*] Compiling Payload
+[+] Payload Compiled
+[+] Binary Compiled
+[!] Sha256 hash of OneDrive.exe: a4db52706d35e4dffe8421ae1b22e3852a49ca3b5726fd494e10ac699818ccf1
+
+```
+
 
 
 
