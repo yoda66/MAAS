@@ -51,6 +51,15 @@ It is important to note the following:
 * Any single gitlab runner can be deployed native to the operating system itself, or even within a Docker container.
 * To achieve your goals, it is likely that you will require different deployed O/S platforms as gitlab runners servicing the CI/CD jobs.
 
+## Pre-Requisites
+
+In order to use this sample repository and documentation there are some infrastructure pre-requisites:
+
+* A fully installed Gitlab server with DNS domain and properly configured TLS certificate.
+* A new project repository with the CI/CD feature enabled in the repository settings.
+* A Linux server with docker installed and network reachability to the Gitlab server. I prefer Ubuntu for my distribution choice.
+    * Note: Please review this docker document at https://docs.docker.com/engine/install/ubuntu/ 
+
 ## What is a GitLab Runner?
 
  A gitlab runner is a software agent installed on a different server from the GitLab server. The GitLab Runner receives instructions from the GitLab server in regards to which jobs to run. Each deployed runner must be registered with the GitLab server.
