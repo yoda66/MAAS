@@ -76,6 +76,7 @@ IMPORTANT: All of the documented steps listed below have already been completed,
 2. [Configuring Four Unique Gitlab Runners](docs/02-runner.md)
 3. [Creating a Docker Stack for Deployment](docs/03-docker-stack.md)
 4. [Adding ScareCrow to the Docker Container](docs/04-scarecrow.md)
+5. [Your First CI/CD Pipeline](docs/05-first-pipeline.md)
 
 
 ## MAAS Architecture Diagram
