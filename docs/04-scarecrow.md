@@ -4,12 +4,18 @@ It is now time to make our Docker container more useful by compiling and adding 
 
 As usual, I have already done the heavy lifting for you and this document represents a review of the tasks I have completed as follows:
 
+1. Compile ScareCrow
+2. Create a Revised Dockerfile
+3. Rebuild the container and test ScareCrow
+4. Re-deploy the Docker Stack
+
+
 ### Compile ScareCrow
 
-1. Clone the ScareCrow Repo from https://github.com/Tylous/ScareCrow.git
-2. Follow the directions to compile ScareCrow using your Linux distribution of choice. I find that Ubuntu is a good choice here.
-3. Copy the **ScareCrow** binary into the repo "**runners/bin**" directory.
-4. ScareCrow has a dependency of using a tool called **garble**. Optionally you can use "**go install**" to get a copy of **garble** and also copy that into the "**runners/bin**" directory.  If ScareCrow does not find **garble** it will get it and install into a "**.lib**" directory whereever ScareCrow is executed from but this will take up extra time.
+* Clone the ScareCrow Repo from https://github.com/Tylous/ScareCrow.git
+* Follow the directions to compile ScareCrow using your Linux distribution of choice. I find that Ubuntu is a good choice here.
+* Copy the **ScareCrow** binary into the repo "**runners/bin**" directory.
+* ScareCrow has a dependency of using a tool called **garble**. Optionally you can use "**go install**" to get a copy of **garble** and also copy that into the "**runners/bin**" directory.  If ScareCrow does not find **garble** it will get it and install into a "**.lib**" directory whereever ScareCrow is executed from but this will take up extra time.
 
 ### Create a revised Dockerfile
 
@@ -105,6 +111,27 @@ root@32cde439576b:/payloads# ScareCrow -I shellcode -Loader binary -nosign
 [!] Sha256 hash of OneDrive.exe: a4db52706d35e4dffe8421ae1b22e3852a49ca3b5726fd494e10ac699818ccf1
 
 ```
+
+### Redeploy the Docker Stack
+
+After you have verified that the container builds successfully and that ScareCrow is working as expected, you will need to redeploy the docker stack.  Note that when you remove a running stack, it takes a little bit of time for docker to kill all of the containers so you will wait for about 30 seconds before deploying the stack again otherwise you will see errors when the stack attempts to configure the network backend.
+
+Use the following commands:
+
+```
+$ docker stack rm maas
+Removing service maas_maas
+Removing network maas_default
+
+$ sleep 30
+
+$ docker stack deploy -c docker-compose.yml maas
+Ignoring unsupported options: build, restart
+Creating network maas_default
+Creating service maas_maas
+
+```
+
 
 
 
