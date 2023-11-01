@@ -70,6 +70,8 @@ Depending on the desired scale and diversity of malware artifact generation, oth
 
 ## Detailed Configuration Recipe/Steps
 
+IMPORTANT: All of the documented steps listed below have already been completed, and the results of that work is mostly contained within the **runner** directory of this repository. You can of course attempt to replicate the steps, but my intent is for you to take the existing skeleton that has been built here and enhance further for your own purposes.
+
 1. [Creating a Gitlab Runner in a Docker Container](docs/01-runner.md)
 2. [Configuring Four Unique Gitlab Runners](docs/02-runner.md)
 3. [Creating a Docker Stack for Deployment](docs/03-docker-stack.md)
