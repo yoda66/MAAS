@@ -101,6 +101,3 @@ This project is licensed with the MIT License.
 ## Project status
 
 The project is under active development and maintenance as of November 2023.
-
-
-[def]: Stuff1
