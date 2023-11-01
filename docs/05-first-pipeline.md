@@ -27,5 +27,11 @@ For the purposes of our pipeline, we make use of the **$CI_COMMIT_SHORT_SHA** va
 
 **PostProcess** will be used for 7ZIP archive creation purposes. The 7ZIP archive will be created in a directory which is then further zipped and made available as an artifact to download when the pipeline completes.
 
+### The Pipeline Trigger
+
+It is typically for a CI/CD pipeline to be triggered whenever a "**git commit**" occurs, however we can exert a little more control over this using a *workflow* statement in our YAML file.
+
+For the purposes of generating malware loaders, we will need to supply some shellcode, thus we create a "**shellcode**" directory and configure the workflow such that any file changes in the "**shellcode**" directory will trigger a pipeline run.
+
 
 
