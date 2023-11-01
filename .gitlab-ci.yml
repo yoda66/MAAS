@@ -38,6 +38,7 @@ PostProcess:
             rm -rf /payloads/${CI_COMMIT_SHORT_SHA}/.lib
             cd /payloads
             7z a "${DEST}/${CI_COMMIT_SHORT_SHA}.7z" "${CI_COMMIT_SHORT_SHA}/*" -p"infected"
+            rm -rf /payloads/${CI_COMMIT_SHORT_SHA}
     artifacts:
         name: ScareCrowPayloads
         paths:
