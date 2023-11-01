@@ -33,5 +33,63 @@ It is typically for a CI/CD pipeline to be triggered whenever a "**git commit**"
 
 For the purposes of generating malware loaders, we will need to supply some shellcode, thus we create a "**shellcode**" directory and configure the workflow such that any file changes in the "**shellcode**" directory will trigger a pipeline run.
 
+### Full Listing of Gitlab YAML file
 
+Below is a complete listing of the current "**.gitlab-ci.yml**" file. The major sections are:
+
+* stages: listing all of the pipeline stages to be executed in sequence
+* workflow: defining the pipeline trigger condition(s)
+* PreProcess: execute any/all actions in the PreProcess stage.
+* ScareCrow: configured as BakingMalware stage
+* PostProcess: zip up files, cleanup and publish artifacts
+
+```
+stages:
+    - PreProcess
+    - BakeMalware
+    - PostProcess
+
+workflow:
+    rules:
+        - changes:
+            - shellcode/*
+
+PreProcess:
+    stage: PreProcess
+    tags:
+        - maas
+    script:
+        - |
+            mkdir -p /payloads/${CI_COMMIT_SHORT_SHA}/.lib
+            ln -s /usr/local/bin/garble /payloads/${CI_COMMIT_SHORT_SHA}/.lib/garble
+
+ScareCrow:
+    stage: BakeMalware
+    tags:
+        - maas
+    script:
+        - |
+            cd /payloads/${CI_COMMIT_SHORT_SHA}
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader binary -domain microsoft.com
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader dll -domain microsoft.com
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader control -domain microsoft.
+com
+
+PostProcess:
+    stage: PostProcess
+    tags:
+        - maas
+    script:
+        - |
+            DEST=${CI_PROJECT_DIR}/ScareCrowPayloads
+            rm -rf /payloads/${CI_COMMIT_SHORT_SHA}/.lib
+            cd /payloads
+            7z a "${DEST}/${CI_COMMIT_SHORT_SHA}.7z" "${CI_COMMIT_SHORT_SHA}/*" -p"infected"
+            rm -rf /payloads/${CI_COMMIT_SHORT_SHA}
+    artifacts:
+        name: ScareCrowPayloads
+        paths:
+            - ScareCrowPayloads/
+        expire_in: 1 day
+```
 
