@@ -120,3 +120,7 @@ The first running instance of your Docker container was 100% focused on just gen
 
 Our intention in the next steps is to modify the Dockerfile such that it is compatible with a **docker stack** and use **docker compose** features to enable the running of multiple docker containers as gitlab runners to service the CICD jobs.
 
+[Goto Next Document -->](docs/02-runner.md)
+
+
+
