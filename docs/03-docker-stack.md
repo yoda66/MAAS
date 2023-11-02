@@ -2,6 +2,22 @@
 
 At this point in time, you should have the correct runner names and tokens saved in files **1.toml**, **2.toml**, **3.toml**, and **4.toml**.  These four files will be used by the gitlab runner inside of the docker container when we stack up the entire configuration using a **docker stack**.
 
+### Background Information
+
+**Docker Compose** was the first tool that was created to solve the challenge of orchestrating multiple containers. In our architecture we are going to be creating individual containers as docker services, and will also be required to orchestrate these containers using docker compose.
+
+**Docker Compose** is not included in a standard docker install so you will need to make sure it is installed.  Here are some important reference links:
+
+* https://medium.com/leniolabs/docker-definitions-example-and-docker-compose-3bf77c58166f
+* https://docs.docker.com/compose/install/linux/
+
+A **Docker Service** is the definition of a docker image with some additional configuration that allows it to work in the context of a larger application. A **service** will likely have many tasks with an associated container created from the same docker image. For our use case, we want to replicate the same malware compilation service a number of times in order to provide some parallel capacity to execute the CI/CD jobs.
+
+A **Docker Stack** is used to manage the orchestration of multiple containers, and when combined with a docker swarm this extends across multiple machines. We are going to use a simplified version of a docker stack which in essence contains only a single service.  Even with this simple stack, we will need to initialize a docker swarm with our server as the *docker swarm manager*.
+
+
+### Step 0: Some Prerequisits
+
 Before we deploy a docker stack, we need a common docker volume for file storage, and we need an appropriately formatted **docker-compose.yml** file which will be used to configure our stack.
 
 ### Step 1: Edit the Dockerfile.template, save and build the new container
