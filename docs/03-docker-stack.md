@@ -10,6 +10,7 @@ At this point in time, you should have the correct runner names and tokens saved
 
 * https://medium.com/leniolabs/docker-definitions-example-and-docker-compose-3bf77c58166f
 * https://docs.docker.com/compose/install/linux/
+* https://docs.docker.com/engine/swarm/swarm-tutorial/
 
 A **Docker Service** is the definition of a docker image with some additional configuration that allows it to work in the context of a larger application. A **service** will likely have many tasks with an associated container created from the same docker image. For our use case, we want to replicate the same malware compilation service a number of times in order to provide some parallel capacity to execute the CI/CD jobs.
 
