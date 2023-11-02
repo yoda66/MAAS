@@ -95,8 +95,35 @@ PostProcess:
 
 ### Testing your Pipeline
 
+#### Status of Backend Docker Infrastructure
+
 Before testing the new pipeline, you should double check and ensure that the docker service stack is up and running. Login to your primary docker server, and issue some status checking commands to ensure that everything is running as expected.
 
 * ```docker node ls``` is used to check the status of your docker swarm deployment
-* 
+* ```docker service ls``` gives you information about your deployed service stack
+* ```docker service ps``` lists running containers associated with your specific service
+* ```docker ps``` lists all of the running containers on the host you are logged into
+
+Shown below is some sample output of a few of these commands:
+
+```
+$ docker node ls
+ID                            HOSTNAME   STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+tzl5tqd5saou5ifxvj8opezmx *   docker01   Ready     Active         Leader           24.0.7
+z22hcsipj4t2wjbohilptj9qn     docker02   Ready     Active                          24.0.7
+
+$ docker service ls
+ID             NAME        MODE         REPLICAS               IMAGE         PORTS
+0bl6ihvy2yc7   maas_maas   replicated   4/4 (max 2 per node)   maas:latest
+
+$ docker service ps maas_maas
+ID             NAME          IMAGE         NODE       DESIRED STATE   CURRENT STATE               ERROR     PORTS
+zsuswajwrmr7   maas_maas.1   maas:latest   docker01   Running         Running about an hour ago
+jz3ms7fvcipi   maas_maas.2   maas:latest   docker02   Running         Running about an hour ago
+0bvdxt9arhg8   maas_maas.3   maas:latest   docker01   Running         Running about an hour ago
+ofjacom0xky8   maas_maas.4   maas:latest   docker02   Running         Running about an hour ago
+
+```
+
+#### Executing the Pipeline from Gitlab
 
