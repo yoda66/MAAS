@@ -60,6 +60,54 @@ In order to use this sample repository and documentation there are some infrastr
 * A Linux server with docker installed and network reachability to the Gitlab server. I prefer Ubuntu for my distribution choice.
     * Note: Please review this docker document at https://docs.docker.com/engine/install/ubuntu/ 
 
+## How to install Docker on Ubuntu Linux
+
+I started out with a standard installation of 64-bit Ubuntu Server version 22.04.3 currently listed as long term support (LTS) as of November 2023.  When you install this server, I would suggest a minimum of 32GB RAM, 4xCPU Cores, and 100GB disk.
+
+Since we will be performing a lot of parallel computation work, you can never go wrong with more CPU cores. If you have the resources, 16xCPU Cores will give you better performance of parallel GitLab pipelines.
+
+Now complete the following steps:
+
+1. Install the docker engine from the docker apt repository as documented here: https://docs.docker.com/engine/install/ubuntu/
+2. Add your non-privileged user to the **docker** group on your Linux host.
+```
+$ sudo usermod -aG docker $USER
+
+```
+3. Check to see if docker is running properly by running a hello-world container!
+
+```
+$ docker run hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+719385e32844: Pull complete
+Digest: sha256:88ec0acaa3ec199d3b7eaf73588f4518c25f9d34f58ce9a0df68429c5af48e8d
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+```
+
+
 ## What is a GitLab Runner?
 
  A gitlab runner is a software agent installed on a different server from the GitLab server. The GitLab Runner receives instructions from the GitLab server in regards to which jobs to run. Each deployed runner must be registered with the GitLab server.
