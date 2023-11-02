@@ -69,7 +69,6 @@ In order to use this sample repository and documentation there are some infrastr
  * PowerShell
  * Docker
  * Virtual Box
- * Docker
 
 In our **MAAS** architecture, we choose the shell environment for runner execution. On a Linux operating system, this is **/bin/bash** whereas in a Windows environment, this is **PowerShell**. Depending on the skillset of the person maintaining the CI/CD yaml files, and also since **PowerShell** is now open source, it is possible to choose a unified shell across platforms, that being **pwsh** (PowerShell).
 
