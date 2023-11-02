@@ -93,3 +93,10 @@ PostProcess:
         expire_in: 1 day
 ```
 
+### Testing your Pipeline
+
+Before testing the new pipeline, you should double check and ensure that the docker service stack is up and running. Login to your primary docker server, and issue some status checking commands to ensure that everything is running as expected.
+
+* ```docker node ls``` is used to check the status of your docker swarm deployment
+* 
+
