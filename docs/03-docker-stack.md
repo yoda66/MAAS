@@ -195,6 +195,14 @@ $ docker stack rm maas
 Removing service maas_maas                                                                             Removing network maas_default      
 ```
 
+### Important: Common View of Shared Storage
+
+If you are deploying your docker service stack across more than one server host in a docker swarm, it is important that the commonly named docker volume is placed on shared storage.
+
+In an Ubuntu Linux installation of Docker, the volumes created will be stored in the **/var/lib/docker/volumes** directory. If you anticipate that you will be creating a large amount of data, I would suggest either creating this as a separate mount point from the master server and exporting it across NFS, or using some form of Network Attached Storage (NAS).
+
+I have used both approaches, and from my experience found that the NFS export from the master server, and then mounting that on the worker node(s) to be the simplest deployment option.  If you end up with shared storage, I found that a CIFS/SMB file system exported from the NAS works well especially if you anticipate configuring some native Windows server runners in the future.
+
 
 ## Congratulations!
 
