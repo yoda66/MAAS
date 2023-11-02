@@ -6,20 +6,47 @@ At this point in time, you should have the correct runner names and tokens saved
 
 **Docker Compose** was the first tool that was created to solve the challenge of orchestrating multiple containers. In our architecture we are going to be creating individual containers as docker services, and will also be required to orchestrate these containers using docker compose.
 
-**Docker Compose** is not included in a standard docker install so you will need to make sure it is installed.  Here are some important reference links:
+**Docker Compose** did not used to be included in the standard Docker installation but now since docker extended capabilities with docker stack, compose is builtin.   Here are some important reference links:
 
-* https://medium.com/leniolabs/docker-definitions-example-and-docker-compose-3bf77c58166f
 * https://docs.docker.com/compose/install/linux/
 * https://docs.docker.com/engine/swarm/swarm-tutorial/
+* https://medium.com/leniolabs/docker-definitions-example-and-docker-compose-3bf77c58166f
 
 A **Docker Service** is the definition of a docker image with some additional configuration that allows it to work in the context of a larger application. A **service** will likely have many tasks with an associated container created from the same docker image. For our use case, we want to replicate the same malware compilation service a number of times in order to provide some parallel capacity to execute the CI/CD jobs.
 
-A **Docker Stack** is used to manage the orchestration of multiple containers, and when combined with a docker swarm this extends across multiple machines. We are going to use a simplified version of a docker stack which in essence contains only a single service.  Even with this simple stack, we will need to initialize a docker swarm with our server as the *docker swarm manager*.
+A **Docker Stack** is used to manage the orchestration of multiple containers, and when combined with a docker swarm this extends across multiple machines. We are going to use a simplified version of a docker stack which in essence contains only a single service.  Even with this simple stack, we will need to initialize a docker swarm with our server as the *docker swarm* manager.
 
+If you have multiple servers available to you, you will be required to use a shared storage mechanism so that the docker volumes are visible to more than one host machine.  In a two host/server situation, you would also need to configure one host as a **swarm manager** and the second host as a **swarm worker**. 
 
 ### Step 0: Some Prerequisits
 
-Before we deploy a docker stack, we need a common docker volume for file storage, and we need an appropriately formatted **docker-compose.yml** file which will be used to configure our stack.
+#### Configuring the Docker Swarm
+
+Before you can deploy a docker stack, you must initialize the docker swarm.
+
+1. For a single docker server, use the following command to initialize the docker swarm:
+
+```
+$ docker swarm init
+```
+
+2. For two or more servers, you can initialize the swarm as follows:
+
+* Choose one server to be the master node, and initialize with this command. We are making the assumption that the ethernet interface on this server has address of 10.10.10.10.
+
+```
+$ docker swarm init --advertise-addr 10.10.10.10                                                    
+Swarm initialized: current node (mxk3nfpql3kv3cb6eca2to514) is now a manager.                                            
+                      
+To add a worker to this swarm, run the following command:                                                                
+
+    docker swarm join --token SWMTKN-1-0yx6zht222xc35cbwvo28ny3oq8bx3nbb2h7lvsmzy7hll01x2-e81c88xpkhclyqmyvq9a3mcwi 10.10.10.10:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+```
+
+* On each of the other hosts/servers you will need to use the **JOIN** command as listed in the output above.
+
 
 ### Step 1: Edit the Dockerfile.template, save and build the new container
 
@@ -98,6 +125,10 @@ $ docker build -t maas -f Dockerfile.DRAFT1 .
 ```
 
 ### Step 3: Create/review the **docker-compose.yml** file.
+
+Before we deploy a docker stack, we need a common docker volume for file storage, and we need an appropriately formatted **docker-compose.yml** file which will be used to configure our stack.
+
+The docker volume will be specified in our docker-compose file. It will be created when the docker stack is deployed.
 
 Fortunately for you, I have done the legwork required to build a docker compose file which will run your 4 different containers as a docker service with a common docker volume.  Listed below is the **docker-compose.yml** file we will be using. Notably we will be relying on that **$TASK_SLOT** environment variable that the docker stack deployment command will set for us.
 
