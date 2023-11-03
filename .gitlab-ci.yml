@@ -17,6 +17,9 @@ PreProcess:
         - mkdir -p /payloads/${CI_COMMIT_SHORT_SHA}/.lib
         - ln -f -s /usr/local/bin/garble /payloads/${CI_COMMIT_SHORT_SHA}/.lib/garble
         - ScareCrow_Pipeline.py -c ${CI_PROJECT_DIR}/SampleConfig.yml >.scarecrow.yml
+    artifacts:
+        paths:
+            - .scarecrow.yml
 
 ScareCrow:
     stage: BakeMalware
