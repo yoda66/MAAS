@@ -45,7 +45,8 @@ ScareCrow:
     noamsi: False
     noetw: True
     nosleep: True
-    ```
+```
+
 Having put this together, my next need was to create a programmatic way of looking up any option within that YAML configuration file. I turned to Python and created a small module/script which allows us to easily lookup any option and print its value back to the screen for consumption.  In this way, I can use the Python script anywhere which the YAML pipeline as needed, or even import this module into another Python script to generate a child pipeline configuration.
 
 Below is an example of using **ConfigLookup.py** on the command line against this sample configuration file. Note that I sent the stderr output to /dev/null only for brevity as a banner is normally printed to the stderr output descriptor.
