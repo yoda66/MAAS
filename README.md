@@ -133,6 +133,9 @@ IMPORTANT: All of the documented steps listed below have already been completed,
 3. [Creating a Docker Stack for Deployment](docs/03-docker-stack.md)
 4. [Adding ScareCrow to the Docker Container](docs/04-scarecrow.md)
 5. [Your First CI/CD Pipeline](docs/05-first-pipeline.md)
+6. [Going Parallel](docs/06-going-parallel.md)
+7. [Creating a Dynamic Child Pipeline](docs/07-dynamic-child-pipeline.md)
+
 
 ## MAAS Architecture Diagram
 
