@@ -14,9 +14,10 @@ PreProcess:
         - maas
     script:
         - |
+            export PATH=$PATH:${CI_PROJECT_DIR}/bin
             mkdir -p /payloads/${CI_COMMIT_SHORT_SHA}/.lib
             ln -s /usr/local/bin/garble /payloads/${CI_COMMIT_SHORT_SHA}/.lib/garble
-            bin/Scarecrow_Pipeline.py -c SampleConfig.yml >.scarecrow.yml
+            ScareCrow_Pipeline.py -c ${CI_PROJECT_DIR}/SampleConfig.yml >.scarecrow.yml
 
 ScareCrow:
     stage: BakeMalware

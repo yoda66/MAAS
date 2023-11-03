@@ -19,7 +19,7 @@ PreProcess:
             bin/Scarecrow_Pipeline.py -c SampleConfig.yml >.scarecrow.yml
 
 ScareCrow:
-    stage: BakingMalware
+    stage: BakeMalware
     trigger:
         include:
         - artifact: .scarecrow.yml
