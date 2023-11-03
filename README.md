@@ -136,7 +136,7 @@ IMPORTANT: All of the documented steps listed below have already been completed,
 
 ## MAAS Architecture Diagram
 
-Listed below is a proposed architecture for your MAAS deployment. The idea is that you have two Linux servers running docker in a swarm configuration, and two Windows servers able to service CI/CD jobs which require Windows O/S development tools not available to Linux.
+Listed below is a proposed architecture for a MAAS deployment. The idea is that you have two Linux servers running docker in a swarm configuration, and two Windows servers able to service CI/CD jobs which require Windows O/S development tools not available to Linux.
 
 ![Alt text](image.png)
 
