@@ -66,7 +66,36 @@ microsoft.com
 
 ### Gitlab Dynamic Dependency Driven Child Pipelines
 
-The Gitlab CI/CD YAML syntax allows us to create a *trigger* which depends on an artifact from a prior stage of the pipeline.
+The Gitlab CI/CD YAML syntax allows us to create a *trigger* which depends on an artifact from a prior stage of the pipeline. What we have to do is modify the main pipeline YAML script such that the **PreProcess** stage runs a script to dynamically produce YAML for the child pipeline, and introduces the dependency based trigger which will then execute the downstream YAML file that is generated.  This involves passing a YAML file artifact from the preprocessing stage and configuring it as a dependency in the **BakeMalware** stage.
+
+Listed below are the changes to the Gitlab **.gitlab-ci.yml** file.
+
+```
+PreProcess:
+    stage: PreProcess
+    tags:
+        - maas
+    script:
+        - export PATH=$PATH:${CI_PROJECT_DIR}/bin
+        - mkdir -p /payloads/${CI_COMMIT_SHORT_SHA}/.lib
+        - ln -f -s /usr/local/bin/garble /payloads/${CI_COMMIT_SHORT_SHA}/.lib/garble
+        - ScareCrow_Pipeline.py -c ${CI_PROJECT_DIR}/SampleConfig.yml >.scarecrow.yml
+    artifacts:
+        paths:
+            - .scarecrow.yml
+
+ScareCrow:
+    stage: BakeMalware
+    trigger:
+        include:
+        - artifact: .scarecrow.yml
+          job: PreProcess
+        strategy: depend
+```
+
+The result of using this *trigger* section will dynamically create a pipeline run from the file named "**.scarecrow.yml**" which has been created in the **PreProcess** stage by the "**ScareCrow_Pipeline.py**" script.
+
+
 
 
 
