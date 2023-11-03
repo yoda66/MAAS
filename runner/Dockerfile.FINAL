@@ -1,0 +1,36 @@
+FROM ubuntu:latest
+RUN apt-get -qqy update
+RUN apt-get install -y apt-utils
+RUN apt-get install -y curl
+RUN curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh" -o runner-script.sh
+RUN chmod 755 ./runner-script.sh && ./runner-script.sh
+RUN rm -f runner-script.sh
+RUN apt-get install -y gitlab-runner
+RUN apt-get install -y wget
+RUN apt-get install -y osslsigncode
+RUN apt-get install -y p7zip-full
+RUN apt-get install -y gcc-mingw-w64-x86-64-win32
+RUN apt-get install -y python3
+RUN apt-get install -y python3-pip
+
+## add runner username
+## reinstall gitlab-runner
+RUN userdel gitlab-runner
+RUN useradd runner -d /runner
+RUN mkdir /runner
+RUN mkdir /payloads
+RUN gitlab-runner uninstall
+RUN gitlab-runner install -user runner
+
+## Install golang and copy files
+WORKDIR /runner
+RUN wget https://go.dev/dl/go1.21.3.linux-amd64.tar.gz
+RUN tar -C /usr/local -xzf go1.21.3.linux-amd64.tar.gz
+RUN rm -f go1.21.3.linux-amd64.tar.gz
+COPY config_toml /etc/config_toml
+COPY bin /usr/local/bin
+RUN ln -s /usr/local/go/bin/go /usr/local/bin/go
+#
+RUN chown -R runner:runner /runner
+RUN chown -R runner:runner /payloads
+CMD gitlab-runner run --working-directory /runner --config /etc/config_toml/$TASK_SLOT.toml --user runner
