@@ -1,9 +1,0 @@
-## Going Parallel
-
-Because we have deployed multiple docker containers on our backend infrastructure,
-we have the processing capability of executing pipeline jobs in parallel.
-If the Gitlab configuration has different jobs listed in the same stage without any dependencies,
-it will leverage concurrency to execute those jobs.
-
-We have two different places in our architecture to take advantage of concurrency.
-First of all there is a concurrency setting in each gitlab runner **toml** configuration file.
