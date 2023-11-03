@@ -24,3 +24,82 @@ We already produced the TOML files to stand up our stack, so this step is as sim
 
 We can proceed with editing each of the TOML files and updating this number. This has in fact already been completed for you.
 
+### Step 2: Rebuild the Docker container and update the service
+
+Thw following command will rebuild the container and update the Docker service. You will need to be in the **runner** directory before running these commands.  You will also need to be logged in to your master docker host if you have more than one Linux backend server in your docker swarm.
+
+```
+$ docker build -t maas -f Dockerfile.DRAFT2 .
+<... output omitted ...>
+
+$ docker service update --force maas_maas
+maas_maas
+overall progress: 4 out of 4 tasks
+1/4: running   [==================================================>]
+2/4: running   [==================================================>]
+3/4: running   [==================================================>]
+4/4: running   [==================================================>]
+
+```
+
+### Step 3: Edit the pipeline YAML and configure 4 parallel jobs
+
+In this step we are going to modify the **BakingMalware** stage such that there is 4 ScareCrow jobs rather than just a single job.
+
+IMPORTANT: If you are running multiple docker servers and a docker swarm, the file storage **MUST** be shared between the two hosts at this stage. If you do not have this capability, then you should drop back to using a single docker server on the backend configured as the docker swarm master.
+
+Here is a listing of the relevant section of the modified "**.gitlab-ci.yml**" file.
+
+```
+ScareCrow01:
+    stage: BakeMalware
+    tags:
+        - maas
+    script:
+        - |
+            cd /payloads/${CI_COMMIT_SHORT_SHA}
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader dll -domain microsoft.com
+
+ScareCrow02:
+    stage: BakeMalware
+    tags:
+        - maas
+    script:
+        - |
+            cd /payloads/${CI_COMMIT_SHORT_SHA}
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader binary -domain microsoft.com
+
+ScareCrow03:
+    stage: BakeMalware
+    tags:
+        - maas
+    script:
+        - |
+            cd /payloads/${CI_COMMIT_SHORT_SHA}
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader control -domain microsoft.com
+
+ScareCrow04:
+    stage: BakeMalware
+    tags:
+        - maas
+    script:
+        - |
+            cd /payloads/${CI_COMMIT_SHORT_SHA}
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader excel -domain microsoft.com
+
+```
+
+### Step 4: Execute the Pipeline and Observe
+
+As we did earlier, trigger the pipeline using the Gitlab UI and observe the different parallel jobs that are running in the **BakingMalware** stage.  If you happen to make an error in your command line parameters to ScareCrow (which I did), you can click into the failed job and examine the output.
+
+![Alt text](image-3.png)
+
+Output of the failed job is listed below.
+
+![Alt text](image-6.png)
+
+
+
+
+
