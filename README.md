@@ -134,10 +134,11 @@ IMPORTANT: All of the documented steps listed below have already been completed,
 4. [Adding ScareCrow to the Docker Container](docs/04-scarecrow.md)
 5. [Your First CI/CD Pipeline](docs/05-first-pipeline.md)
 
-
 ## MAAS Architecture Diagram
 
-![Alt text](docs/image.png)
+Listed below is a proposed architecture for your MAAS deployment. The idea is that you have two Linux servers running docker in a swarm configuration, and two Windows servers able to service CI/CD jobs which require Windows O/S development tools not available to Linux.
+
+![Alt text](image.png)
 
 ## Roadmap
 
