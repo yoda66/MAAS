@@ -1,0 +1,28 @@
+ScareCrow:
+    loader:
+        - binary
+        - dll
+        - control
+        - excel
+        - msiexec
+        - wscript
+
+    #injection: C:\\windows\\system32\\dataexchangehost.exe
+
+    #delivery:
+    #   - bits
+    #   - hta
+    #   - macro
+    #url: https://delivery.acme.com
+
+    ## Fake artifact signing cert uses this domain
+    domain: microsoft.com
+
+    ## Sandbox evasion only checks ifDomainJoined
+    sandbox: False
+
+    ## the below will selectively disable evasive features
+    ## you probably want to keep these all at False.
+    noamsi: False
+    noetw: True
+    nosleep: True

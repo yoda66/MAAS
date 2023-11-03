@@ -43,13 +43,13 @@ class ConfigLookup():
 
 if __name__ == '__main__':
     banner = '''
-_________________________________________
+___________________________________________
 
-     ConfigLookup.py
-     Version 1.1
-     Author: Joff Thyer (c) 2023
-     Black Hills Information Security
-_________________________________________
+   ConfigLookup.py
+   Version 1.1
+   Author: Joff Thyer (c) 2023
+   Black Hills Information Security LLC
+___________________________________________
 
 '''
     sys.stderr.write(banner)
