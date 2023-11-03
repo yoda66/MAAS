@@ -16,42 +16,15 @@ PreProcess:
         - |
             mkdir -p /payloads/${CI_COMMIT_SHORT_SHA}/.lib
             ln -s /usr/local/bin/garble /payloads/${CI_COMMIT_SHORT_SHA}/.lib/garble
+            bin/Scarecrow_Pipeline.py -c SampleConfig.yml >.scarecrow.yml
 
-ScareCrow01:
-    stage: BakeMalware
-    tags:
-        - maas
-    script:
-        - |
-            cd /payloads/${CI_COMMIT_SHORT_SHA}
-            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader dll -domain microsoft.com
-
-ScareCrow02:
-    stage: BakeMalware
-    tags:
-        - maas
-    script:
-        - |
-            cd /payloads/${CI_COMMIT_SHORT_SHA}
-            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader binary -domain microsoft.com
-
-ScareCrow03:
-    stage: BakeMalware
-    tags:
-        - maas
-    script:
-        - |
-            cd /payloads/${CI_COMMIT_SHORT_SHA}
-            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader control -domain microsoft.com
-
-ScareCrow04:
-    stage: BakeMalware
-    tags:
-        - maas
-    script:
-        - |
-            cd /payloads/${CI_COMMIT_SHORT_SHA}
-            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader excel -domain microsoft.com
+ScareCrow:
+    stage: BakingMalware
+    trigger:
+        include:
+        - artifact: .scarecrow.yml
+          job: PreProcess
+        strategy: depend
 
 PostProcess:
     stage: PostProcess
