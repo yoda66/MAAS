@@ -1,4 +1,4 @@
-concurrent = 1
+concurrent = 2
 check_interval = 0
 shutdown_timeout = 0
 
