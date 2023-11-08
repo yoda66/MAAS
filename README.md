@@ -1,5 +1,24 @@
 # Malware As A Service (MAAS)
 
+## Quick Start Instructions
+
+I would **HIGHLY** recommend you read ALL of these instructions, however if you are in a huge hurry and have GitLab/Docker experience, try these quick start instructions.
+
+* Download or clone this repo.
+* Setup a Linux server with docker installed
+* Add four runners to your GitLab server and save the tokens.
+* Edit the TOML files and include the saved tokens.
+* Build the docker container from the **runner** directory **Dockerfile.FINAL**.  
+* Deploy the docker services.
+```
+docker build -t maas -f Dockerfile.FINAL .
+docker swarm init
+docker stack deploy -c docker-compose.yml maas
+```
+* Copy the **gitlab-ci-version03.yml** to **.gitlab-ci.yml**.
+* Trigger the pipeline in GitLab and test.
+
+
 ## Getting started
 
 In todays modern defense stack environment, penetration testers are faced with significant obstacles for initial access operations. There are many technologies deployed in environments design to thwart attempts at executing various binary artifacts on an endpoint and prevent initial access from succeeding.
