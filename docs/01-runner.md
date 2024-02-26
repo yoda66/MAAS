@@ -59,9 +59,9 @@ docker run -it maas
 
 3. Register a new runner in your new GitLab repo project by selecting Settings->CICD->Runners, and clicking on "**New Project Runner**". You should see a screen that looks like this.
 
-![Alt text](image-2.png)
+![Alt text](images/image-2.png)
 
-4. Within the bash shell of the runner, create a non-privileged username called **runner** and then use the following command:
+1. Within the bash shell of the runner, create a non-privileged username called **runner** and then use the following command:
 
 
 ```
@@ -120,7 +120,5 @@ The first running instance of your Docker container was 100% focused on just gen
 
 Our intention in the next steps is to modify the Dockerfile such that it is compatible with a **docker stack** and use **docker compose** features to enable the running of multiple docker containers as gitlab runners to service the CICD jobs.
 
-[Goto Next Document -->](docs/02-runner.md)
 
-
-
+[Goto Next Document -->](./02-runner.md)

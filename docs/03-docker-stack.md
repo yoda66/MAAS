@@ -186,7 +186,7 @@ local     maas_payloads
 
 You should verify on your GitLab community server that all the configured **maas** runners have a GREEN light showing to indicate the containers have indeed checked in with the server.
 
-![Alt text](image-4.png)
+![Alt text](images/image-4.png)
 
 If at any point in time you wish to take the docker stack down / kill the containers, you can use the **docker stack rm** command as follows:
 
@@ -208,5 +208,5 @@ I have used both approaches, and from my experience found that the NFS export fr
 
 You now have a running docker stack with four independant containers to service a CI/CD pipeline from your Gitlab repo.  Your docker stack is a simply Ubuntu distribution with no specific tools installed and no CI/CD pipeline steps configured to execute either.  The next document will further enhance the container with the installation of a malware generation tool and the configuration of the pipeline itself.
 
-[Goto Next Document -->](docs/04-scarecrow.md)
 
+[Goto Next Document -->](./04-scarecrow.md)

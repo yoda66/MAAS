@@ -93,13 +93,11 @@ ScareCrow04:
 
 As we did earlier, trigger the pipeline using the Gitlab UI and observe the different parallel jobs that are running in the **BakingMalware** stage.  If you happen to make an error in your command line parameters to ScareCrow (which I did), you can click into the failed job and examine the output.
 
-![Alt text](image-3.png)
+![Alt text](images/image-3.png)
 
 Output of the failed job is listed below.
 
-![Alt text](image-6.png)
+![Alt text](images/image-6.png)
 
 
-
-
-
+[Goto Next Document -->](./07-dynamic-child-pipeline.md)
