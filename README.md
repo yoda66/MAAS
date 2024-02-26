@@ -18,7 +18,6 @@ docker stack deploy -c docker-compose.yml maas
 * Copy the **gitlab-ci-version03.yml** to **.gitlab-ci.yml**.
 * Trigger the pipeline in GitLab and test.
 
-
 ## Getting started
 
 In todays modern defense stack environment, penetration testers are faced with significant obstacles for initial access operations. There are many technologies deployed in environments design to thwart attempts at executing various binary artifacts on an endpoint and prevent initial access from succeeding.
@@ -160,7 +159,7 @@ IMPORTANT: All of the documented steps listed below have already been completed,
 
 Listed below is a proposed architecture for a MAAS deployment. The idea is that you have two Linux servers running docker in a swarm configuration, and two Windows servers able to service CI/CD jobs which require Windows O/S development tools not available to Linux.
 
-![Alt text](image.png)
+![Alt text](docs/images/image.png)
 
 ## Roadmap
 
